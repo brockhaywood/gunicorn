@@ -60,9 +60,9 @@ class GeventWorker(AsyncWorker):
 
         # if the new version is used make sure to patch subprocess
         if gevent.version_info[0] == 0:
-            monkey.patch_all()
+            monkey.patch_all(thread=False)
         else:
-            monkey.patch_all(subprocess=True)
+            monkey.patch_all(subprocess=True, thread=False)
 
         # monkey patch sendfile to make it none blocking
         patch_sendfile()
